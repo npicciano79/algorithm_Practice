@@ -24,6 +24,7 @@ print(solution.fibbonacci(value))
 
 #returns value in the position of a fibbonacci sequence
 
+"""
 class Solution(object):
     def fibbonacci(self, value):
         prevVal=0
@@ -37,6 +38,18 @@ class Solution(object):
         
         return currVal
         
-value=4
+value=3
 solution=Solution()
 print(solution.fibbonacci(value))
+"""
+
+
+class Solution(object):
+    def fib(self,n):
+        if n<=2:
+            return n
+        else:
+            return self.fib(n-2)+self.fib(n-1)
+
+solution=Solution()
+print(solution.fib(5))
