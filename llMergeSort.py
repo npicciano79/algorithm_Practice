@@ -28,13 +28,15 @@ class LinkedList:
             this_node=this_node.next
         
         return ll_array
-    
+
     def mergeSortList(self,head):
-        if not self.head or not self.head.next:
-            return self.head
+        print('merge sort hit')
         
-        left=self.head
-        right=self.getMiddle(self.head)
+        if not head or not head.next:
+            return head
+        
+        left=head
+        right=self.getMiddle(head)
         temp=right.next
         right.next=None
         right=temp
@@ -47,7 +49,8 @@ class LinkedList:
 
         
     def getMiddle(self,head):
-        slow,fast=self.head,self.head.next
+        print('get middle hit')
+        slow,fast=head,head.next
         while fast and fast.next:
             slow=slow.next
             fast=fast.next.next
@@ -55,9 +58,10 @@ class LinkedList:
         return slow
 
     def mergeLeftRight(self,left,right):
-        dummy=tail=Node()
+        print('merge left right hit')
+        dummy=tail=Node(-1)
         while left and right:
-            if left.data<right.data:
+            if left.data<=right.data:
                 tail.next=left
                 left=left.next 
             else:
@@ -65,10 +69,7 @@ class LinkedList:
                 right=right.next
             tail=tail.next 
 
-        if left:
-            tail.next=left
-        if right:
-            tail.next=right
+        tail.next=left if not right else right
         return dummy.next
     
 
@@ -84,4 +85,5 @@ linkedlist.add(9)
 linkedlist.add(12)
 linkedlist.add(7)
 print(linkedlist.printList())
-linkedlist.mergeSortList()
+linkedlist.head=linkedlist.mergeSortList(linkedlist.head)
+print(linkedlist.printList())
